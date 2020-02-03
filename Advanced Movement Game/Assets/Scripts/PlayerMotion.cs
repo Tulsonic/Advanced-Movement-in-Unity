@@ -20,6 +20,7 @@ public class PlayerMotion : MonoBehaviour
     [SerializeField] private float wallRunMaxCoolDownTime;
     [SerializeField] private float wallRunJumpOffForce;
     [SerializeField] private float wallRunJumpUpForce;
+    [SerializeField] private float wallRunDrag;
 
     [Header("Other")]
     [SerializeField] private float jumpForce;
@@ -62,6 +63,7 @@ public class PlayerMotion : MonoBehaviour
     private bool crouch;
     private bool canWallRun;
 
+    private bool isWalking;
     private bool isJumping;
     private bool isWallRunning;
     private bool isWallJumping;
@@ -84,7 +86,7 @@ public class PlayerMotion : MonoBehaviour
         playerCamera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
         baseFOV = playerCamera.fieldOfView;
 
-        speedFinal = normalSpeed;
+        speedFinal = 100;
 
         canWallRun = true;
         wallRunCoolDownTime = 0;
@@ -336,7 +338,7 @@ public class PlayerMotion : MonoBehaviour
 
         // States
         isGrounded = UnityEngine.Physics.Raycast(playerTransform.position, Vector3.down, playerTransform.localScale.y / 2 + 0.6f, layerMask);
-
+        if (vMove != 0 || hMove != 0) { isWalking = true; }
         isJumping = (jump && isGrounded);
         isCrouching = crouch;
         if (sprint && vMove > 0 && isGrounded && !isCrouching) { isSprinting = true; } else if (!sprint || vMove == 0) { isSprinting = false; }
@@ -359,6 +361,7 @@ public class PlayerMotion : MonoBehaviour
     private void FixedUpdate()
     {
         direction = new Vector3(hMove, 0, vMove);
+        direction.Normalize();
 
         // Edit FOV and speed based on sprint state
         if (isSprinting && speedFinal < sprintSpeed)
@@ -373,6 +376,7 @@ public class PlayerMotion : MonoBehaviour
         {
             speedFinal += speedModifier * Time.fixedDeltaTime;
         }
+        else if (!isWalking) { speedFinal = 100; }
 
         // Edit speed based on crouch state
         if (isCrouching && speedFinal > crouchSpeed)
@@ -396,24 +400,34 @@ public class PlayerMotion : MonoBehaviour
         }
 
         // Particle effect for sprinting
-        if (playerRigidbody.velocity.magnitude > 10) { partSystem.Play(); } else { partSystem.Stop(); }
+        if (playerRigidbody.velocity.magnitude > 12) { partSystem.Play(); } else { partSystem.Stop(); }
 
         // Set movement vector for player
-        if (((isGrounded && !isCrouching) || isWallRunning || (isCrouching && playerRigidbody.velocity.magnitude < 6)) && !(isGrappling && Input.GetKey("e")))
+        if (((isGrounded && !isCrouching) || (isCrouching && playerRigidbody.velocity.magnitude < 12)) && !(isGrappling && Input.GetKey("e")) && !isWallRunning)
         {
-            Debug.Log("burh");
             Vector3 targetVelocity = transform.TransformDirection(direction) * speedFinal * Time.fixedDeltaTime;
             Vector3 deltaVelocity = (targetVelocity - playerRigidbody.velocity);
+
             deltaVelocity.x = Mathf.Clamp(deltaVelocity.x, -maxSpeed, maxSpeed);
             deltaVelocity.z = Mathf.Clamp(deltaVelocity.z, -maxSpeed, maxSpeed);
-            if (isWallRunning)
-            {
-                playerRigidbody.AddRelativeForce(Vector3.back * 3000 * Time.deltaTime);
-                Vector2 XZComponent = new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z);
-                GetComponent<ConstantForce>().relativeForce = (Vector3.up * 9.81f * 5f * playerRigidbody.mass * XZComponent.magnitude * Time.fixedDeltaTime);
-                deltaVelocity.y = 0;
-            }
-            else { deltaVelocity.y = 0; GetComponent<ConstantForce>().relativeForce = (Vector3.zero); }
+
+            playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
+        }
+        else if (isWallRunning)
+        {
+            Vector3 newDirection = new Vector3(hMove / 4, 0, vMove).normalized;
+            Vector3 targetVelocity = transform.TransformDirection(newDirection) * speedFinal * Time.fixedDeltaTime;
+            Vector3 deltaVelocity = (targetVelocity - playerRigidbody.velocity);
+
+            deltaVelocity.x = Mathf.Clamp(deltaVelocity.x, -maxSpeed, maxSpeed);
+            deltaVelocity.z = Mathf.Clamp(deltaVelocity.z, -maxSpeed, maxSpeed);
+
+            playerRigidbody.AddRelativeForce(Vector3.back * wallRunDrag * Time.deltaTime);
+            Vector2 XZComponent = new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z);
+            GetComponent<ConstantForce>().relativeForce = (Vector3.up * 9.81f * 4f * playerRigidbody.mass * XZComponent.magnitude * Time.fixedDeltaTime);
+
+            deltaVelocity.y = 0;
+
             playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
         }
         else
