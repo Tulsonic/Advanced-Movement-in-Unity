@@ -424,7 +424,7 @@ public class PlayerMotion : MonoBehaviour
 
             playerRigidbody.AddRelativeForce(Vector3.back * wallRunDrag * Time.deltaTime);
             Vector2 XZComponent = new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z);
-            GetComponent<ConstantForce>().relativeForce = (Vector3.up * 9.81f * 4f * playerRigidbody.mass * XZComponent.magnitude * Time.fixedDeltaTime);
+            GetComponent<ConstantForce>().relativeForce = (Vector3.up * 9.81f * 3f * playerRigidbody.mass * XZComponent.magnitude * Time.fixedDeltaTime);
 
             deltaVelocity.y = 0;
 

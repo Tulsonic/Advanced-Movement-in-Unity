@@ -1694,7 +1694,7 @@ MonoBehaviour:
   wallRunMaxTime: 5
   wallRunMaxCoolDownTime: 0.2
   wallRunJumpOffForce: 400
-  wallRunJumpUpForce: 500
+  wallRunJumpUpForce: 525
   wallRunDrag: 2000
   jumpForce: 600
   grappleSpeed: 3
