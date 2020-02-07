@@ -6,17 +6,9 @@ public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] public float mouseSensitivity = 100f;
 
-
     private float xAxisClamp = 0f;
 
     private Transform playerTransform;
-    private Transform cameraTransform;
-
-    private PlayerMotion playerMotion;
-    private Rigidbody playerRigidbody;
-
-    private Vector3 getStartingPoint;
-    private Vector3 startingPosition;
 
     private void Awake()
     {
@@ -25,16 +17,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-        playerMotion = GameObject.Find("Player").GetComponent<PlayerMotion>();
-        cameraTransform = GetComponent<Transform>();
-        startingPosition = cameraTransform.localPosition;
-        playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        Debug.Log(mouseSensitivity);
+        playerTransform = GameObject.Find("Player").GetComponent<Transform>();  
     }
 
     private void LateUpdate()

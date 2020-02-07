@@ -25,6 +25,7 @@ public class PlayerMotion : MonoBehaviour
     [Header("Other")]
     [SerializeField] private float jumpForce;
     [SerializeField] private float grappleSpeed;
+    [SerializeField] private float slidingHorizontalSpeed;
 
     [HideInInspector] public RaycastHit grappleTarget;
     [HideInInspector] public bool isGrounded;
@@ -403,7 +404,7 @@ public class PlayerMotion : MonoBehaviour
         if (playerRigidbody.velocity.magnitude > 12) { partSystem.Play(); } else { partSystem.Stop(); }
 
         // Set movement vector for player
-        if (((isGrounded && !isCrouching) || (isCrouching && playerRigidbody.velocity.magnitude < 12)) && !(isGrappling && Input.GetKey("e")) && !isWallRunning)
+        if (((isGrounded && !isCrouching) || (isCrouching && isGrounded && playerRigidbody.velocity.magnitude < 12)) && !(isGrappling && Input.GetKey("e")) && !isWallRunning)
         {
             Vector3 targetVelocity = transform.TransformDirection(direction) * speedFinal * Time.fixedDeltaTime;
             Vector3 deltaVelocity = (targetVelocity - playerRigidbody.velocity);
@@ -429,6 +430,12 @@ public class PlayerMotion : MonoBehaviour
             deltaVelocity.y = 0;
 
             playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
+        }
+        else if (isCrouching && isGrounded && playerRigidbody.velocity.magnitude >= 12)
+        {
+            GetComponent<ConstantForce>().relativeForce = (Vector3.zero);
+            if (Input.GetKey("d")) { playerRigidbody.AddRelativeForce(Vector3.right * slidingHorizontalSpeed * Time.fixedDeltaTime); }
+            if (Input.GetKey("a")) { playerRigidbody.AddRelativeForce(Vector3.left * slidingHorizontalSpeed * Time.fixedDeltaTime); }
         }
         else
         {
