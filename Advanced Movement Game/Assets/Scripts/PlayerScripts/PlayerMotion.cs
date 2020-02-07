@@ -411,6 +411,7 @@ public class PlayerMotion : MonoBehaviour
 
             deltaVelocity.x = Mathf.Clamp(deltaVelocity.x, -maxSpeed, maxSpeed);
             deltaVelocity.z = Mathf.Clamp(deltaVelocity.z, -maxSpeed, maxSpeed);
+            deltaVelocity.y = 0;
 
             playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
         }
