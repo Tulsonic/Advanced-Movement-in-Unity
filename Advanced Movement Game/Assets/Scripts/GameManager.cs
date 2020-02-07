@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager gameManagerInstance;
 
-    [HideInInspector] public float newSensitivity;
+    private OptionsSave optionsSave;
+
+    [HideInInspector] public float mouseSensitivity;
 
     private void Awake()
     {
@@ -22,20 +25,34 @@ public class GameManager : MonoBehaviour
         }
 
         //SceneManager.LoadScene("TestLevel");
-
     }
 
     private void Start()
     {
-        newSensitivity = 100f;
+        optionsSave = GetComponent<OptionsSave>();
+
+        // Get Defaults
+        string path = Application.persistentDataPath + "/player.AMGD";
+        if (File.Exists(path)) { GetSavedValues(); }
+        else 
+        {
+            mouseSensitivity = optionsSave.mouseSensitivity; 
+        }
+    }
+
+    public void GetSavedValues()
+    {
+        SettingsData data = SaveSystem.LoadData();
+        
+        // PlayerCamera
+        mouseSensitivity = data.mouseSensitivity;
     }
 
     private void Update()
     {
-        Debug.Log(newSensitivity);
         if (GameObject.Find("PlayerCamera") != null) 
         {
-            GameObject.Find("PlayerCamera").GetComponent<PlayerCameraController>().mouseSensitivity = newSensitivity; 
+            GameObject.Find("PlayerCamera").GetComponent<PlayerCameraController>().mouseSensitivity = mouseSensitivity; 
         }
 
         if (Input.GetKeyDown("r"))
