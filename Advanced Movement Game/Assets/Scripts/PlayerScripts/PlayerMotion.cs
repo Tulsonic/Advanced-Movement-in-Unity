@@ -26,6 +26,7 @@ public class PlayerMotion : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float grappleSpeed;
     [SerializeField] private float slidingHorizontalSpeed;
+    [SerializeField] private float grappleRange;
 
     [HideInInspector] public RaycastHit grappleTarget;
     [HideInInspector] public bool isGrounded;
@@ -294,7 +295,7 @@ public class PlayerMotion : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             counter = 0;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out grappleTarget))
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out grappleTarget, grappleRange))
             {
                 grappleThrown = true;
                 ropeRenderer.enabled = true;
@@ -329,6 +330,7 @@ public class PlayerMotion : MonoBehaviour
             Vector3 changePlayerScale = playerTransform.localScale;
             changePlayerScale.y = 0.5f;
             playerTransform.localScale = changePlayerScale;
+            if(isJumping) { speedFinal = sprintSpeed; }
         }
         else
         {
@@ -377,7 +379,7 @@ public class PlayerMotion : MonoBehaviour
         {
             speedFinal += speedModifier * Time.fixedDeltaTime;
         }
-        else if (!isWalking) { speedFinal = 100; }
+        else if (!isWalking && isGrounded) { speedFinal = 100; }
 
         // Edit speed based on crouch state
         if (isCrouching && speedFinal > crouchSpeed)
@@ -421,16 +423,19 @@ public class PlayerMotion : MonoBehaviour
             Vector3 targetVelocity = transform.TransformDirection(newDirection) * speedFinal * Time.fixedDeltaTime;
             Vector3 deltaVelocity = (targetVelocity - playerRigidbody.velocity);
 
-            deltaVelocity.x = Mathf.Clamp(deltaVelocity.x, -maxSpeed, maxSpeed);
-            deltaVelocity.z = Mathf.Clamp(deltaVelocity.z, -maxSpeed, maxSpeed);
+            if (deltaVelocity.magnitude > 0) 
+            { 
+                deltaVelocity.x = Mathf.Clamp(deltaVelocity.x, -maxSpeed, maxSpeed);
+                deltaVelocity.z = Mathf.Clamp(deltaVelocity.z, -maxSpeed, maxSpeed);
+
+                deltaVelocity.y = 0;
+
+                playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
+            }
 
             playerRigidbody.AddRelativeForce(Vector3.back * wallRunDrag * Time.deltaTime);
             Vector2 XZComponent = new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z);
             GetComponent<ConstantForce>().relativeForce = (Vector3.up * 9.81f * 4f * playerRigidbody.mass * XZComponent.magnitude * Time.fixedDeltaTime);
-
-            deltaVelocity.y = 0;
-
-            playerRigidbody.AddForce(deltaVelocity, ForceMode.VelocityChange);
         }
         else if (isCrouching && isGrounded && playerRigidbody.velocity.magnitude >= 12)
         {

@@ -8,7 +8,7 @@ public class ButtonParrentScript : MonoBehaviour
 {
     public void LoadStart()
     {
-        SceneManager.LoadScene("TestLevel");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void LoadOptions()

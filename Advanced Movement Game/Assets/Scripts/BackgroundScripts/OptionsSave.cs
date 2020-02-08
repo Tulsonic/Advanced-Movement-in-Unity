@@ -7,6 +7,9 @@ public class OptionsSave : MonoBehaviour
     // PlayerCamera
     public float mouseSensitivity;
 
+    // Levels
+    public string level1CompleteTime;
+
     private void Start()
     {
         // Defaults
