@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public float mouseSensitivity;
     [HideInInspector] public string level1CompleteTime;
+    [HideInInspector] public float realLevel1CompleteTime;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         // PlayerCamera
         mouseSensitivity = data.mouseSensitivity;
         level1CompleteTime = data.level1CompleteTime;
+        realLevel1CompleteTime = data.realLevel1CompleteTime;
     }
 
     private void Update()
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void Menu()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
 }

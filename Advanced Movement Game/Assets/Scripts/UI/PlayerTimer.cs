@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerTimer : MonoBehaviour
 {
-    private float timer;
+    [HideInInspector] public float realTime;
+
     private bool isActive;
     private Text text;
 
@@ -19,15 +20,15 @@ public class PlayerTimer : MonoBehaviour
     {
         if (isActive)
         {
-            timer += Time.deltaTime;
+            realTime += Time.deltaTime;
             UpdateText();
         }
     }
 
     void UpdateText()
     {
-        float seconds = timer % 60;
-        float minutes = ((int)(timer / 60) % 60);
+        float seconds = realTime % 60;
+        float minutes = ((int)(realTime / 60) % 60);
 
         text.text = minutes.ToString("00") + ":" + seconds.ToString("00.00");
     }

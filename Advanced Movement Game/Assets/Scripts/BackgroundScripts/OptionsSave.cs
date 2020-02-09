@@ -9,6 +9,7 @@ public class OptionsSave : MonoBehaviour
 
     // Levels
     public string level1CompleteTime;
+    public float realLevel1CompleteTime;
 
     private void Start()
     {

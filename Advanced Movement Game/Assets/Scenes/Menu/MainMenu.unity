@@ -999,6 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 0
   level1CompleteTime: 
+  realLevel1CompleteTime: 0
 --- !u!4 &678754087
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,7 +1027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
-  level1ompleteTime: 
+  level1CompleteTime: 
+  realLevel1CompleteTime: 0
 --- !u!1 &679803593
 GameObject:
   m_ObjectHideFlags: 0

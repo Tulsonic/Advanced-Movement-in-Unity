@@ -80,6 +80,9 @@ public class PlayerMotion : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         playerRigidbody = GetComponent<Rigidbody>();
         playerTransform = GetComponent<Transform>();
 
@@ -112,11 +115,11 @@ public class PlayerMotion : MonoBehaviour
         bool rightImpact = Physics.Raycast(rayRight.origin, rayRight.direction, out wallImpactRight, 1f, layerMask);
         bool leftInpact = Physics.Raycast(rayLeft.origin, rayLeft.direction, out wallImpactLeft, 1f, layerMask);
 
-        if (rightImpact && Vector3.Angle(playerTransform.TransformDirection(Vector3.forward), wallImpactRight.normal) > 80)
+        if (rightImpact && Vector3.Angle(playerTransform.TransformDirection(Vector3.forward), wallImpactRight.normal) > 50)
         {
             return wallImpactRight;
         }
-        else if (leftInpact && Vector3.Angle(playerTransform.TransformDirection(Vector3.forward), wallImpactLeft.normal) > 80)
+        else if (leftInpact && Vector3.Angle(playerTransform.TransformDirection(Vector3.forward), wallImpactLeft.normal) > 50)
         {
             wallImpactLeft.normal = wallImpactLeft.normal * -1;
             return wallImpactLeft;

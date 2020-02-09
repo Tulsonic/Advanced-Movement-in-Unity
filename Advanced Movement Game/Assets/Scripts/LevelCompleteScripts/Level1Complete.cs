@@ -10,19 +10,25 @@ public class Level1Complete : MonoBehaviour
     public Text text;
 
     private GameManager gameManager;
+    private PlayerTimer playerTimer;
 
     private void Start()
     {
         optionsSave = GameObject.Find("GameManager").GetComponent<OptionsSave>();
         text = GameObject.Find("TimerText").GetComponent<Text>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerTimer = GameObject.Find("TimerText").GetComponent<PlayerTimer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.level1CompleteTime = text.text;
-        optionsSave.level1CompleteTime = text.text;
-        optionsSave.StartSaveData();
+        if (gameManager.realLevel1CompleteTime > playerTimer.realTime || gameManager.realLevel1CompleteTime == 0f) 
+        { 
+            gameManager.level1CompleteTime = text.text;
+            optionsSave.level1CompleteTime = text.text;
+            optionsSave.realLevel1CompleteTime = playerTimer.realTime;
+            optionsSave.StartSaveData();
+        }
         gameManager.Menu();
     }
 }

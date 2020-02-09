@@ -314,11 +314,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 380192816303735584, guid: f1d42d84889389d4eb7db9cfb6a586d8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 380192816303735586, guid: f1d42d84889389d4eb7db9cfb6a586d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -347,17 +342,17 @@ PrefabInstance:
     - target: {fileID: 380192817459594064, guid: f1d42d84889389d4eb7db9cfb6a586d8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 9.1
       objectReference: {fileID: 0}
     - target: {fileID: 380192817459594064, guid: f1d42d84889389d4eb7db9cfb6a586d8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 188.32
+      value: 188.4
       objectReference: {fileID: 0}
     - target: {fileID: 380192817459594064, guid: f1d42d84889389d4eb7db9cfb6a586d8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -121.8
+      value: -120.3
       objectReference: {fileID: 0}
     - target: {fileID: 380192817459594064, guid: f1d42d84889389d4eb7db9cfb6a586d8,
         type: 3}
@@ -408,16 +403,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AngularDrag
       value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 380192817459594071, guid: f1d42d84889389d4eb7db9cfb6a586d8,
-        type: 3}
-      propertyPath: slidingHorizontalSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 380192817459594071, guid: f1d42d84889389d4eb7db9cfb6a586d8,
-        type: 3}
-      propertyPath: grappleRange
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1d42d84889389d4eb7db9cfb6a586d8, type: 3}
@@ -991,17 +976,17 @@ PrefabInstance:
     - target: {fileID: 3347244859431813223, guid: e6be4a070dd7bf84a929b45ffcb3ec87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.1
+      value: 8.700005
       objectReference: {fileID: 0}
     - target: {fileID: 3347244859431813223, guid: e6be4a070dd7bf84a929b45ffcb3ec87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 185.51999
+      value: 185.59998
       objectReference: {fileID: 0}
     - target: {fileID: 3347244859431813223, guid: e6be4a070dd7bf84a929b45ffcb3ec87,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -120.8
+      value: -119.29998
       objectReference: {fileID: 0}
     - target: {fileID: 3347244859431813223, guid: e6be4a070dd7bf84a929b45ffcb3ec87,
         type: 3}
@@ -1490,12 +1475,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6169039163815057929, guid: f57d2f242569faa41ae52653eb234ad1,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: d91c892629c4d9b4ea3ae7032cafb10f,
-        type: 3}
     - target: {fileID: 7367401380678918931, guid: f57d2f242569faa41ae52653eb234ad1,
         type: 3}
       propertyPath: m_LocalPosition.x
