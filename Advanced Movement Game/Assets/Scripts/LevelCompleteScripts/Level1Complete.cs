@@ -25,6 +25,7 @@ public class Level1Complete : MonoBehaviour
         if (gameManager.realLevel1CompleteTime > playerTimer.realTime || gameManager.realLevel1CompleteTime == 0f) 
         { 
             gameManager.level1CompleteTime = text.text;
+            gameManager.realLevel1CompleteTime = playerTimer.realTime;
             optionsSave.level1CompleteTime = text.text;
             optionsSave.realLevel1CompleteTime = playerTimer.realTime;
             optionsSave.StartSaveData();
