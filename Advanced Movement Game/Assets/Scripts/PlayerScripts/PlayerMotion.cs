@@ -295,7 +295,7 @@ public class PlayerMotion : MonoBehaviour
         crouch = Input.GetKey(KeyCode.LeftControl);
 
         // Grapple 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             counter = 0;
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out grappleTarget, grappleRange))
@@ -304,7 +304,7 @@ public class PlayerMotion : MonoBehaviour
                 ropeRenderer.enabled = true;
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             isDrawingGrappleBack = true;
             isGrappling = false;

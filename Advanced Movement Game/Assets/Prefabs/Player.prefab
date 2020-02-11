@@ -4958,6 +4958,7 @@ GameObject:
   - component: {fileID: 380192817459594070}
   - component: {fileID: 380192817459594075}
   - component: {fileID: 380192817459594071}
+  - component: {fileID: 7298363529909946251}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5101,6 +5102,21 @@ MonoBehaviour:
   isSprinting: 0
   direction: {x: 0, y: 0, z: 0}
   isCrouching: 0
+--- !u!114 &7298363529909946251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380192817459594060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5ef5c6ea0f95c4bb457719cb454fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 7304047583048559979, guid: 677326a84de26174193e09d0af047f2a,
+    type: 3}
+  bulletSpeed: 1000
 --- !u!1 &380192817582194272
 GameObject:
   m_ObjectHideFlags: 0
@@ -5314,13 +5330,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3225889847188303278}
+  - component: {fileID: 4337053117446628594}
   m_Layer: 0
   m_Name: GUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3225889847188303278
 Transform:
   m_ObjectHideFlags: 0
@@ -5329,8 +5346,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918516268196192189}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.417, y: -0.36, z: 0.872}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0.829, y: -0.45, z: 1.201}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 7565579460767970315}
   - {fileID: 14614361426482624}
@@ -5339,6 +5356,20 @@ Transform:
   m_Father: {fileID: 380192817582194279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &4337053117446628594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918516268196192189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbe184c357eb9d4d96c7145e7de58ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPoint: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2924039748032226961
 GameObject:
   m_ObjectHideFlags: 0
