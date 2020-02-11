@@ -4,27 +4,42 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject projectile;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float waitTime;
 
-    private Transform gun;
+    private float time;
+
     private Camera playerCamera;
+    private GameObject bulletEmitter;
+    private ParticleSystem particleSystem;
 
     void Start()
     {
-        gun = GameObject.Find("GUN").GetComponent<Transform>();
         playerCamera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+        bulletEmitter = GameObject.Find("BulletEmitter");
+        particleSystem = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        time += Time.deltaTime;
+        if (time >= waitTime)
         {
-            RaycastHit hitPoint;
-            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint);
-            GameObject bullet = Instantiate(projectile, gun.position, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Transform>().LookAt(hitPoint.point);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
+            shoot();
+            time = 0;
+        }
+        
+    }
+
+    void shoot()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            particleSystem.Play();
+            if (Physics.Raycast(bulletEmitter.transform.position, playerCamera.transform.forward, out RaycastHit hitPoint))
+            {
+
+            }
         }
     }
 }
