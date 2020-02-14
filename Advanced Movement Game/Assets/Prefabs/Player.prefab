@@ -5150,6 +5150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 1000
   waitTime: 0
+  bulletHitParticle: {fileID: 8796153432337397386, guid: 3fcb89e126f5d5b4481e3ab0b01c677e,
+    type: 3}
 --- !u!1 &380192817582194272
 GameObject:
   m_ObjectHideFlags: 0

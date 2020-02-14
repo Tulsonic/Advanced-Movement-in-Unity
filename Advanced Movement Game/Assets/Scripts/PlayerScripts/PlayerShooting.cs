@@ -11,35 +11,37 @@ public class PlayerShooting : MonoBehaviour
 
     private Camera playerCamera;
     private GameObject bulletEmitter;
-    private ParticleSystem particleSystem;
+    private ParticleSystem muzzelFlashParticle;
+
+    [SerializeField] private GameObject bulletHitParticle;
 
     void Start()
     {
         playerCamera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
         bulletEmitter = GameObject.Find("BulletEmitter");
-        particleSystem = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
+        muzzelFlashParticle = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= waitTime)
-        {
-            shoot();
-            time = 0;
-        }
-        
+        shoot();
     }
 
     void shoot()
     {
-        if (Input.GetMouseButton(0))
+        time += Time.deltaTime;
+        if (time >= waitTime)
         {
-            particleSystem.Play();
-            if (Physics.Raycast(bulletEmitter.transform.position, playerCamera.transform.forward, out RaycastHit hitPoint))
+            if (Input.GetMouseButton(0))
             {
-
+                muzzelFlashParticle.Play();
+                if (Physics.Raycast(bulletEmitter.transform.position, playerCamera.transform.forward, out RaycastHit hitPoint))
+                {
+                    GameObject bulletHitParticleInWorld = Instantiate(bulletHitParticle, hitPoint.point, Quaternion.identity) as GameObject;
+                    bulletHitParticleInWorld.transform.LookAt(bulletHitParticleInWorld.transform.position + hitPoint.normal);
+                }
             }
+            time = 0;
         }
     }
 }
