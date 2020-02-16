@@ -6,11 +6,13 @@ public class HeadBob : MonoBehaviour
 {
     #region  variables
 
+    [Header("Walking and breathing")] 
     [SerializeField] private Transform head;
 
     [SerializeField] private float headBobFrequency = 1.5f;
     [SerializeField] private float headBobSwayAngle = 0.5f;
-    [SerializeField] private float headBobHeight = 0.3f;
+    [SerializeField] private float headBobHeightMove = 0.3f;
+    [SerializeField] private float headBobHeightIdle = 0.3f;
     [SerializeField] private float headBobSideMovement = 0.05f;
     [SerializeField] private float headBobSpeedMultiplier = 0.3f;
     [SerializeField] private float bobStrideSpeedLengthen = 0.3f;
@@ -21,7 +23,9 @@ public class HeadBob : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private PlayerMotion playerMotion;
 
-    private Vector3 originalLocalPosition;
+    [HideInInspector] public Vector3 originalLocalPosition;
+
+    private float headBobHeight;
 
     private float nextStepTime = 0.5f;
     private float headBobCycle = 0.0f;
@@ -86,12 +90,14 @@ public class HeadBob : MonoBehaviour
 
             if (new Vector3(velocity.x, 0, velocity.z).magnitude < 0.1f)
             {
+                headBobHeight = headBobHeightIdle;
                 headBobFade = Mathf.Lerp(headBobFade, 0.5f, Time.deltaTime);
                 breath += 1f * (Time.deltaTime / headBobFrequency);
                 bobFactor = Mathf.Sin(breath * Mathf.PI * 2);
             }
             else
             {
+                headBobHeight = headBobHeightMove;
                 headBobFade = Mathf.Lerp(headBobFade, 1.0f, Time.deltaTime);
             }
 
