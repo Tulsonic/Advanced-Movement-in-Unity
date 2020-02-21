@@ -23,8 +23,9 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
         playerCamera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
-        recoilCamera = playerCamera.GetComponent<RecoilCamera>();
-        recoilWeapon = GameObject.Find("GUN").GetComponent<RecoilWeapon>();
+
+        recoilWeapon = GetComponent<RecoilWeapon>();
+        recoilCamera = GetComponent<RecoilCamera>();
         bulletEmitter = GameObject.Find("BulletEmitter");
         muzzelFlashParticle = GameObject.Find("MuzzleFlash").GetComponent<ParticleSystem>();
     }
