@@ -29,6 +29,10 @@ public class RecoilCamera : MonoBehaviour
             curentRotation = Vector3.Lerp(curentRotation, Vector3.zero, returnSpeed * Time.deltaTime);
             Rot = Vector3.Slerp(Rot, curentRotation, rotationSpeed * Time.fixedDeltaTime);
             headJoint.transform.localRotation = Quaternion.Euler(Rot);
+            if (curentRotation.magnitude < 0.1f)
+            {
+                StopShooting();
+            }
         }
     }
 

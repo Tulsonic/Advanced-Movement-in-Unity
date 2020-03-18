@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1532013861726649257}
   - component: {fileID: 4109449704465550544}
   - component: {fileID: 6314230435730768967}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6761590343837173411}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: GUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463457197440167767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2828499316103194860}
@@ -121,10 +121,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1950006336917592969}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: RotationPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2702253707392831308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 4.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6761590343837173411}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5579658093731625914}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3732375641558986723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21934032, y: -0.13425589, z: 1.1564493}
+  m_LocalPosition: {x: 0.21934032, y: 0.78, z: -7.89}
   m_LocalScale: {x: 0.00468, y: 0.00468, z: 0.00468}
   m_Children: []
   m_Father: {fileID: 6761590343837173411}
@@ -4943,7 +4943,7 @@ GameObject:
   - component: {fileID: 9047577435642649186}
   - component: {fileID: 7457633283815965228}
   - component: {fileID: 7669457624164824978}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5050,7 +5050,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140876540433689816}
-  m_Layer: 8
+  - component: {fileID: 239068346209531118}
+  - component: {fileID: 5418799697450778173}
+  - component: {fileID: 4867025096547563027}
+  m_Layer: 11
   m_Name: MarxmanRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5072,6 +5075,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239068346209531118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056123574945134811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5ef5c6ea0f95c4bb457719cb454fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 0
+  fireRate: 0.05
+  damage: 20
+  impact: 300
+  isAuto: 0
+  bulletHitParticle: {fileID: 8796153432337397386, guid: 3fcb89e126f5d5b4481e3ab0b01c677e,
+    type: 3}
+--- !u!114 &5418799697450778173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056123574945134811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49333b06c344d9048b6df224114a0316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 6
+  returnSpeed: 10
+  recoilRotation: {x: 1, y: 1, z: 1}
+--- !u!114 &4867025096547563027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056123574945134811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b78c888b8b9dd249a9c07c8537b72fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationPosition: {fileID: 1950006336917592969}
+  recoilPosition: {fileID: 5317045487594074988}
+  rotationalRecoilSpeed: 6
+  positionalRecoilSpeed: 6
+  rotationalReturnSpeed: 16
+  positionalReturnSpeed: 16
+  recoilRotation: {x: 10, y: 2, z: 3}
+  kickBackRecoil: {x: 0.01, y: 0, z: -0.07}
 --- !u!1 &6136399384594966835
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,7 +5140,7 @@ GameObject:
   - component: {fileID: 7968319827528762712}
   - component: {fileID: 4293925714785153260}
   - component: {fileID: 1931173905068565784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5160,10 +5217,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5317045487594074988}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: RecoilPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5193,7 +5250,7 @@ GameObject:
   - component: {fileID: 4498560726882822095}
   - component: {fileID: 7422791822264029039}
   - component: {fileID: 2049341373763318245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5272,7 +5329,7 @@ GameObject:
   - component: {fileID: 3938770807042667042}
   - component: {fileID: 6562317589658986409}
   - component: {fileID: 5384650458911143274}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}

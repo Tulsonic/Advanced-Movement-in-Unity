@@ -94,10 +94,10 @@ GameObject:
   m_Layer: 11
   m_Name: AssultRifle
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3465411880117877520
 Transform:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   fireRate: 0.15
   damage: 10
   impact: 200
-  recoilWeapon: {fileID: 0}
+  isAuto: 1
   bulletHitParticle: {fileID: 8796153432337397386, guid: 3fcb89e126f5d5b4481e3ab0b01c677e,
     type: 3}
 --- !u!1 &2736395191944388117
@@ -5042,7 +5042,7 @@ GameObject:
   m_Layer: 11
   m_Name: RecoilPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5073,7 +5073,7 @@ GameObject:
   m_Layer: 11
   m_Name: RotationPosition
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
